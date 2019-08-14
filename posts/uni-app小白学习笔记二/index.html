@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>Uni App小白学习笔记(二) &middot; 我的hugo博客</title>
+  <meta name="keywords" content="素锦, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="世界上每个角落都有人过着相似的人生">
+  <meta name="author" content="hojun">
+  <link rel="icon" type="image/png" href="/img/32.png">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        Uni App小白学习笔记(二)</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                Uni App小白学习笔记(二)</h1>
+                <div class="stuff">
+                    
+                    <span>July 18, 2019</span>
+                    <span>字数 1622</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    <p>上篇文章我们已经初步搭建好了刷题App的第一个页面，这篇文章继续来开发后续一些功能。
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190718220013.png" alt="" />
+首先，准备的题目类型有单选题、多选题、判断题、案例题四种类型。所以，需要一个供选择哪种类型的页面。先简单实现个：点击pages-&gt;右键-&gt;新建页面
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190718220716.png" alt="" />
+页面命名为question，选择使用scss
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190718221322.png" alt="" />
+新建的页面内容如下：
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190718221838.png" alt="" />
+接下来开始撸代码，之前撸代码的遇到很多H5支持而App不支持的情况。所以建议先阅读文档<a href="https://uniapp.dcloud.io/matter">uni-app 跨端开发注意事项</a>
+注意：uni-app的tag同小程序的tag，和HTML的tag不一样，比如div要改成view，span要改成text、a要改成navigator。
+所以代码要这么写：</p>
+
+<pre><code class="language-html">&lt;view class=&quot;uni-padding-wrap uni-common-mt&quot;&gt;
+  &lt;view class=&quot;uni-flex uni-row&quot;&gt;
+    &lt;navigator url=&quot;/pages/question/single_choice/single_choice&quot; hover-class=&quot;navigator-hover&quot;&gt;
+      &lt;view class=&quot;uni-flex-item&quot;&gt;
+        &lt;uni-icon type=&quot;compose&quot;&gt;&lt;/uni-icon&gt;
+        &lt;text class=&quot;text&quot;&gt;单选题&lt;/text&gt;
+      &lt;/view&gt;
+    &lt;/navigator&gt;
+  &lt;/view&gt;
+&lt;/view&gt;
+</code></pre>
+
+<p>这里就使用了<a href="https://uniapp.dcloud.io/component/navigator">navigator</a>代替a标签，view代替div，text代替span。然后使用了uni-ui的Icon图标组件。需要在网页上下载
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190718233215.png" alt="" />
+并在script中引用组件：</p>
+
+<pre><code class="language-js">&lt;script&gt;
+    import uniIcon from &quot;@/components/uni-icon/uni-icon.vue&quot;  
+    export default {
+        data() {
+            return {
+                
+            };
+        },
+        components: {uniIcon}
+    }
+&lt;/script&gt;
+</code></pre>
+
+<p>scss如下： 需要安装编译插件。flex布局这里就不解释了，不会的自行学习。
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190718233643.png" alt="" /></p>
+
+<pre><code class="language-css">.uni-flex {
+    display: flex;
+    flex-direction: row;
+    height: 250rpx;
+    .uni-flex-item {
+      flex: 1;
+      .text {
+          text-align: center;
+          font-size: 40rpx;
+      }
+      .uni-icon-compose {
+          font-size: 160rpx;
+      }
+    }
+}
+</code></pre>
+
+<p>页面写好了，接下来可是看下效果。不过之前还要在首页index.vue中加代码跳转到这页面中来。</p>
+
+<pre><code class="language-html">&lt;template&gt;
+  &lt;view class=&quot;content&quot;&gt;
+    &lt;image class=&quot;logo&quot; src=&quot;/static/logo.png&quot;&gt;&lt;/image&gt;
+    &lt;view&gt;
+      &lt;text class=&quot;title&quot;&gt;{{title}}&lt;/text&gt;
+      &lt;navigator url=&quot;/pages/question/question&quot; hover-class=&quot;navigator-hover&quot;&gt;
+        &lt;button class=&quot;item&quot; type=&quot;primary&quot;&gt;题库1&lt;/button&gt;
+      &lt;/navigator&gt;
+    &lt;/view&gt;
+  &lt;/view&gt;
+&lt;/template&gt;
+</code></pre>
+
+<p>运行到浏览器效果如下：
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190719002523.png" alt="" />
+接下来准备开发答题页面。参考其它答题类App的页面。不过开发前先要引入两个比较重要的css，在App.vue中引入：</p>
+
+<pre><code class="language-html">&lt;style&gt;
+  /*每个页面公共css */
+  @import &quot;./common/uni.css&quot;;
+  @import &quot;./common/normalize.css&quot;;
+&lt;/style&gt;
+</code></pre>
+
+<p>common需要自己要目录下新建，uni.css是官方组件css样式，normalize.css是css resets(重置)。在question文件夹下新建页面one_choice（注意这里把single改one了，因为好像one才是单选题的意思。所以question.vue中也要改），代码如下：</p>
+
+<pre><code class="language-html">&lt;template&gt;
+  &lt;view class=&quot;content&quot;&gt;
+    &lt;view class=&quot;type&quot;&gt;
+      &lt;text class=&quot;span&quot;&gt;第1题-单选题&lt;/text&gt;
+      &lt;text class=&quot;span&quot;&gt;1/5&lt;/text&gt;
+    &lt;/view&gt;
+    &lt;p&gt;&lt;text&gt;[单选]&lt;/text&gt;将（ ）年作为脱贫攻坚作风建设年，集中力量解决突出作风问题。科学确定脱贫摘帽时间，对弄虚作假、搞数字脱贫的严肃查处。实施乡村振兴战略。&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li class=&quot;option&quot;&gt;
+        &lt;i&gt;A&lt;/i&gt;
+        &lt;view class=&quot;option-text&quot;&gt;2022&lt;/view&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;option&quot;&gt;
+        &lt;i&gt;A&lt;/i&gt;
+        &lt;view class=&quot;option-text&quot;&gt;2020&lt;/view&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;option&quot;&gt;
+        &lt;i&gt;A&lt;/i&gt;
+        &lt;view class=&quot;option-text&quot;&gt;2019&lt;/view&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;option&quot;&gt;
+        &lt;i&gt;A&lt;/i&gt;
+        &lt;view class=&quot;option-text&quot;&gt;2018&lt;/view&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/view&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+  export default {
+    data() {
+      return {
+        
+      };
+    }
+  }
+&lt;/script&gt;
+
+&lt;style lang=&quot;scss&quot;&gt;
+.content {
+  position: absolute;
+  height: 100%;
+  margin: 0 35upx;
+  font-size: 32upx;
+  .type {
+    margin: 20upx 0;
+    font-size: 28upx;
+    .span{
+      &amp;:last-child {
+        float: right;
+        right: 0upx;
+      }
+    }
+  }
+  .option {
+    list-style: none;
+    min-height: 100upx;
+    &amp;:first-child {
+      margin-top: 10px;
+    }
+    i {
+      font-style: normal;
+      line-height: 32px;
+      color: #4680fe;
+      text-align: center;
+      display: inline-block;
+      border: 1px solid #4680fe;
+      height: 32px;
+      width: 32px;
+      margin: 0 10px 0 10px;
+      float: left;
+      border-radius: 25px;
+    }
+    .option-text {
+      display: inline-block;
+      width: 80%;
+      height: 100%;
+    }
+  }
+}
+&lt;/style&gt;
+</code></pre>
+
+<p>效果如下：
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190719224451.png" alt="" />
+接下来考虑导入excel数据，推荐一个在线转换excel成json的网站www。
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190723001836.png" alt="" />
+然后把excel表头改成自己想要的字段。题目改question，选项A改optionA，答案改answer。还要使用ctrlH替换掉Excel中的空格。然后ctrlA全选，复制到网页上。点击转换。生成json。（注意：若excel中存在空格，则会出现不能准确分割每个元素，使用ctrl+H把空格全部替换成无空格，再去转换）
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190723002059.png" alt="" />
+接下来就是获取JSON来读取题目数据了。第一想法是使用ajax引入json数据。在uni-app中是使用uni.request来加载json，然后在将需要的数据渲染出来，在chrome浏览器中运行，发现可以得到数据，但是运行到Android端发现不行。查看文档知道app端不支持本地获取，需要服务端。于是只能将json直接写在js中使用。这里使用es6语法的export和import导入js。因为放在static下一直获取不到，将其放在question目录下，然后引入。（求知道原因的大佬告知）
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190810203701.png" alt="" /></p>
+
+<pre><code class="language-js">import question_data from '../single_choice.js'
+</code></pre>
+
+<p>To Be Continued&hellip;&hellip;</p>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls">
+                        <source type="audio/mpeg" src="/mp3/%e8%a1%97%e9%81%93%e7%9a%84%e5%af%82%e5%af%9e.mp3">
+                        <a href="/mp3/%e8%a1%97%e9%81%93%e7%9a%84%e5%af%82%e5%af%9e.mp3">/mp3/街道的寂寞.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="https://diaspora.hojun.cn/posts/hugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" rel="prev">上一篇</a>
+                    
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "我的hugo博客";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

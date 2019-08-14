@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate">
+  <title>Uni App小白学习笔记(一) &middot; 我的hugo博客</title>
+  <meta name="keywords" content="素锦, inspiration, customization, rainmeter, design, web, 壁纸, 设计, 收集, wallpaper, collection, jaku, icon">
+  <meta name="description" content="世界上每个角落都有人过着相似的人生">
+  <meta name="author" content="hojun">
+  <link rel="icon" type="image/png" href="/img/32.png">
+  <link rel="stylesheet" href="/css/diaspora.css">
+  <link rel="stylesheet" href="/css/insight.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head><body class="loading">
+        <div id="loading"></div>
+				<div id="nav"></div>
+				<div class="nav-user"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+        <div class="bar">
+        </div>
+        <a class="icon-icon" href="javascript:history.back()">
+        </a>
+        <div title="播放/暂停" class="icon-play">
+        </div>
+        
+        <h3 class="subtitle" style="display: none;">
+        Uni App小白学习笔记(一)</h3>
+        <div class="social">
+            <div>
+                <div class="share">
+                    <a title="获取二维码" class="icon-wechat" href="javascript:;"></a>
+                </div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="scrollbar" style="width: 1.1636%;"></div>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div>
+                <h1 class="title">
+                Uni App小白学习笔记(一)</h1>
+                <div class="stuff">
+                    
+                    <span>July 10, 2019</span>
+                    <span>字数 877</span>
+                    
+                    
+                </div>
+                <div class="content">
+                    
+
+<h2 id="背景需求">背景需求</h2>
+
+<p>经常会碰到一些这样的场景：需要通过一次考试，考试内容限定在一个excel题库里。用excel题库复习，但是excel在电脑上打开还好，在手机上打开实在是太小了，复习起来太累。而且现在大部分时间都是在手机上复习的多，又是靠碎片化时间学习。于是就想开发一个刷题系统。又考虑到web端需要消耗流量，且受到网速限制比较大，于是想开发个安卓App版的。查询了下解决方案，尝试使用uni-app框架开发。这系列文章就是用来记录开发过程中遇到的一些坑和debug的过程。</p>
+
+<hr />
+
+<h2 id="uni-app是什么">uni-app是什么？</h2>
+
+<p>uni-app 是一个使用 Vue.js 开发跨平台应用的前端框架，开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190715235107.png" alt="" /></p>
+
+<h2 id="开始todo">开始TODO</h2>
+
+<h3 id="开发前准备">开发前准备</h3>
+
+<p>选定工具后就开始着手准备开发。首先，需要安装 HBuliderX工具，也可以使用vue-cli命令行方式创建项目。这里推荐使用HBuliderX工具。<a href="http://www.dcloud.io/hbuilderx.html">下载地址:dcloud.io/hbuilderx.html</a>。有闲置手机的可以使用真机调试，没有的话也可以使用手机模拟器来调试。我这里选择某电模拟器，没有安装的可以自行百度安装。</p>
+
+<p>下载安装好HBuliderX工具后， 点击打开。速度挺快，在工具那里可以预设置快捷键方式。让用户从其他ide工具过来能很快就上手HBuliderX。
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190716001933.png" alt="" /></p>
+
+<h3 id="新建项目">新建项目</h3>
+
+<p>接着新建uni-app项目
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190716000340.png" alt="" />
+选择uni-app，默认模版，取名为uniapp-Exercises(截图名称请忽略)
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190716000738.png" alt="" />
+新建好后，我们点击：运行-&gt;运行到浏览器-&gt;Chrome。预览下效果。
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190717232948.png" alt="" />
+浏览器打开如下：（注意默认localhost:8080，端口不要被占用）
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190717233356.png" alt="" /></p>
+
+<h3 id="分析代码">分析代码</h3>
+
+<p>开发一个项目，对其运行流程了解是必需的。打开网页上的uni-app文档，在框架介绍里面可以找到其目录结构：
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190717233955.png" alt="" />
+可以看出pages是业务页面文件存放的目录，下面有我们的index.vue文件。打开它，你会发现就是个很简单的vue文件：
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190717234729.png" alt="" />
+修改data的title为uniapp-Exercises，可以看到网页上的title立马就变了
+<img src="https://cdn.jsdelivr.net/gh/honjun/ImageHosting/picgo/20190717234829.png" alt="" />
+所以只要有vue基础，就可以快速上手开发了！</p>
+
+<p>未完待续。</p>
+
+                    
+                    <audio id="audio" loop="1" preload="auto" style="width: 100%;" controls="controls">
+                        <source type="audio/mpeg" src="/mp3/%e8%a1%97%e9%81%93%e7%9a%84%e5%af%82%e5%af%9e.mp3">
+                        <a href="/mp3/%e8%a1%97%e9%81%93%e7%9a%84%e5%af%82%e5%af%9e.mp3">/mp3/街道的寂寞.mp3</a>
+                    </audio>
+                </div>
+                <div class="comment-wrap">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="relate">
+        <ul>
+            <h3 id="prev_next">
+                <em>相 关 文 章</em>
+                <span>
+                    <a href="javascript: window.scrollTo(0, 0);">
+                    返回顶部</a>
+                    
+                        <a href="https://diaspora.hojun.cn/posts/%E4%BD%A0%E8%B5%B0%E4%BA%86%E7%9C%9F%E5%A5%BD%E4%B8%8D%E7%84%B6%E6%80%BB%E6%8B%85%E5%BF%83%E4%BD%A0%E8%A6%81%E8%B5%B0/" rel="prev">上一篇</a>
+                    
+                    
+                        <a href="https://diaspora.hojun.cn/posts/hugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" rel="next">下一篇</a>
+                    
+                </span>
+            </h3>
+            
+            
+            
+        </ul>
+    </div>
+</div>
+<p style="text-align: center;">
+  <a style="color: inherit" target="_blank" href="https://github.com/honjun/hugo-theme-diaspora"></a>
+</p>
+
+<script>
+  var siteTitle = "我的hugo博客";
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<script src="/js/custom.js"></script>
+<script src="/js/InsightSearch.js"></script>
+</body>
+</html>
+

@@ -141,7 +141,7 @@ tags:
  - 标签一
  - 标签二
 # 文章音乐 默认为下值 改
-mp3: http://isujin.com/wp-content/uploads/2016/01/街道的寂寞.mp3?_=1
+mp3: /mp3/街道的寂寞.mp3
 # 文章封面图 默认为下值 改
 cover: https://cdn.jsdelivr.net/gh/hojun2/hojun2.github.io/img/wallhaven-672007-2.jpg
 # 文章关键字 加

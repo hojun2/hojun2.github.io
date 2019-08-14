@@ -6,10 +6,37 @@
     <description>Recent content in Posts on 我的hugo博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 11 Apr 2019 23:36:51 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2019 21:35:18 +0800</lastBuildDate>
     
 	<atom:link href="https://diaspora.hojun.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Uni App小白学习笔记(二)</title>
+      <link>https://diaspora.hojun.cn/posts/uni-app%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <pubDate>Thu, 18 Jul 2019 21:35:18 +0800</pubDate>
+      
+      <guid>https://diaspora.hojun.cn/posts/uni-app%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <description>上篇文章我们已经初步搭建好了刷题App的第一个页面，这篇文章继续来开发后续一些功能。 首先，准备的题目</description>
+    </item>
+    
+    <item>
+      <title>Hugo博客添加搜索功能</title>
+      <link>https://diaspora.hojun.cn/posts/hugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Fri, 12 Jul 2019 21:14:25 +0800</pubDate>
+      
+      <guid>https://diaspora.hojun.cn/posts/hugo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/</guid>
+      <description>碎碎念 由于hugo没有插件接口或者有我这小白还不知道。目前官方大部分的主题都没有搜索功能，而一些拥有</description>
+    </item>
+    
+    <item>
+      <title>Uni App小白学习笔记(一)</title>
+      <link>https://diaspora.hojun.cn/posts/uni-app%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <pubDate>Wed, 10 Jul 2019 23:35:11 +0800</pubDate>
+      
+      <guid>https://diaspora.hojun.cn/posts/uni-app%E5%B0%8F%E7%99%BD%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <description>背景需求 经常会碰到一些这样的场景：需要通过一次考试，考试内容限定在一个excel题库里。用excel</description>
+    </item>
     
     <item>
       <title>你走了真好，不然总担心你要走</title>
